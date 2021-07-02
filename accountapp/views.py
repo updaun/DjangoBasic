@@ -9,4 +9,4 @@ def hello_world(request):
     # HttpResponse ALT+RETURN -> find import
     # 21.07.02
     #return HttpResponse('Hello World!')
-    return render(request, 'base.html')
+    return render(request, 'accountapp/hello_world.html')

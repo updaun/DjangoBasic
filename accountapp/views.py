@@ -4,6 +4,9 @@ from django.shortcuts import render
 
 # Create your views here.
 
+
 def hello_world(request):
     # HttpResponse ALT+RETURN -> find import
-    return HttpResponse('Hello World!')
+    # 21.07.02
+    #return HttpResponse('Hello World!')
+    return render(request, 'base.html')

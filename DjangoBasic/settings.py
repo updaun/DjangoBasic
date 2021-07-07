@@ -139,6 +139,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 21.07.07 : 최상위 폴더에서 static을 인식하겠다.
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

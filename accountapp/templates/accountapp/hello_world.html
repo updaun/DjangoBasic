@@ -7,6 +7,14 @@
 
     <div style="margin: 2rem; text-align: center">
         <h1>hello django</h1>
+
+        {# 버튼 생성 #}
+        <form action="/accounts/hello_world/" method="post">
+            {# 장고 자체 웹 취약점 보완 #}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-outline-primary rounded-pill px-5">
+        </form>
+
         {# 단순 출력 #}
         <h3>{{ text }}</h3>
     </div>

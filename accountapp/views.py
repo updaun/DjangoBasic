@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from accountapp.models import NewModel
 
 
 def hello_world(request):
@@ -12,8 +13,15 @@ def hello_world(request):
     # 21.07.09 : rendering 분기
     #return render(request, 'accountapp/hello_world.html')
     if request.method == "POST":
+        # 21.07.13 : input text
+        temp = request.POST.get('input_text')
+
+        model_instance = NewModel()
+        model_instance.text = temp
+        model_instance.save()
+
         return render(request, 'accountapp/hello_world.html',
-                      context={'text':'POST METHOD!'})
+                      context={'model_instance':model_instance})
     else:
         return render(request, 'accountapp/hello_world.html',
                       context={'text':'GET METHOD!'})

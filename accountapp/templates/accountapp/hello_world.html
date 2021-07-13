@@ -12,11 +12,12 @@
         <form action="/accounts/hello_world/" method="post">
             {# 장고 자체 웹 취약점 보완 #}
             {% csrf_token %}
+            <input type="text" name="input_text">
             <input type="submit" class="btn btn-outline-primary rounded-pill px-5">
         </form>
 
-        {# 단순 출력 #}
-        <h3>{{ text }}</h3>
+        {# 단순 출력 에서 모델의 텍스트로 변환#}
+        <h3>{{ model_instance.text }}</h3>
     </div>
 
 {% endblock %}

@@ -1,9 +1,12 @@
 # 21.06.30 : Basic view
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import NewModel
 
@@ -28,3 +31,12 @@ def hello_world(request):
         data_list = NewModel.objects.all()
         return render(request, 'accountapp/hello_world.html',
                       context={'data_list': data_list})
+
+# 회원가입 로직
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    # class와 function의 호출이 다르다! 때문에 reverse_lazy 메서드를 사용하여 호출
+    # success_url = reverse('accountapp:hello_world') # 작동 안됨
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = "accountapp/create.html"

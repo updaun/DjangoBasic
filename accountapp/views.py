@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
 from accountapp.models import NewModel
 
@@ -46,3 +46,11 @@ class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = "accountapp/detail.html"
+
+# 계정 정보 업데이트 로직(기본 장고 제공)
+class AccountUpdateView(UpdateView):
+    model = User
+    form_class = UserCreationForm
+    context_object_name = 'target_user'
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = "accountapp/update.html"

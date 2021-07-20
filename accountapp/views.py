@@ -9,6 +9,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountapp.models import NewModel
+from accountapp.templates.accountapp.forms import AccountCreationForm
 
 
 def hello_world(request):
@@ -50,7 +51,7 @@ class AccountDetailView(DetailView):
 # 계정 정보 업데이트 로직(기본 장고 제공)
 class AccountUpdateView(UpdateView):
     model = User
-    form_class = UserCreationForm
+    form_class = AccountCreationForm
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = "accountapp/update.html"

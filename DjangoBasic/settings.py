@@ -56,10 +56,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 21.06.30 : add app
+    # 21.06.30 : add accountapp
     'accountapp',
     # 21.07.16 : add django bootstrap4
     'bootstrap4',
+    # 21.07.23 : add profileapp
+    'profileapp',
 ]
 
 MIDDLEWARE = [

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # 21.07.23 python manage.py createsuperuser
     path('admin/', admin.site.urls),
     # 21.06.30 add path
     path('accounts/', include('accountapp.urls'))

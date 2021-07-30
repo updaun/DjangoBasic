@@ -26,6 +26,6 @@ urlpatterns = [
     # 21.07.23 add profile path
     path('profiles/', include('profileapp.urls')),
     # 21.07.30 add article path
-    path('article/', include('articleapp.urls')),
+    path('articles/', include('articleapp.urls')),
     # 21.07.28 image load
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

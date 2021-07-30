@@ -49,8 +49,11 @@ class AccountCreateView(CreateView):
     form_class = UserCreationForm
     # class와 function의 호출이 다르다! 때문에 reverse_lazy 메서드를 사용하여 호출
     # success_url = reverse('accountapp:hello_world') # 작동 안됨
-    success_url = reverse_lazy('accountapp:hello_world')
+    # success_url = reverse_lazy('accountapp:hello_world')
     template_name = "accountapp/create.html"
+
+    def get_success_url(self):
+        return reverse('accountapp:detail', kwargs={'pk':self.object.pk})
 
 # 계정 상세정보 로직(기본 장고 제공)
 class AccountDetailView(DetailView):

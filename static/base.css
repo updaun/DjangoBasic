@@ -30,3 +30,16 @@
 .NNB_B {
     font-family: "NanumBarunpenB", cursive;
 }
+
+.round_button {
+    color : black;
+    text-decoration: none;
+    /* 그림자 생기는 x 좌표, y좌표, 그림자 크기, 그림자 색*/
+    box-shadow: 0 0 3px black;
+    border-radius: 20rem;
+    padding: 0.3rem;
+}
+
+.round_button:hover {
+    color: dimgray;
+}

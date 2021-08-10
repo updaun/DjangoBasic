@@ -10,6 +10,11 @@
 {#                UserCreationForm 호출 #}
 {#                {{ form }}#}
                 {% bootstrap_form form %}
+
+                <input type="hidden"
+                       name="article_pk"
+                       value="{{ target_article.pk }}">
+
                 <div class="m-5">
                     <input type="submit" class="btn btn-dark rounded-pill px-5">
                 </div>

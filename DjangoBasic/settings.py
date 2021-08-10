@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'profileapp',
     # 21.07.30 : add articleapp
     'articleapp',
+    # 21.08.10 : add commentapp
+    'commentapp',
 ]
 
 MIDDLEWARE = [

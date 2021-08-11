@@ -41,8 +41,27 @@
         <hr>
 
         <div class="text-center my-4">
-            {#     댓글 내용, 댓글 작성창       #}
+            {#     댓글 보이기      #}
+            {% for comment in target_article.comment.all %}
 
+                <div class="comment_box">
+                    {#     댓글 작성자      #}
+                    <div>
+                        <span class="NNB_B"
+                              style="font-size: 1.3rem;">{{ comment.writer.profile.nickname }}</span>
+                        <span>{{ comment.created_at }}</span>
+                    </div>
+                    {#     댓글 내용      #}
+                    <div>
+                        <p>
+                            {{ comment.content }}
+                        </p>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            {#     댓글 작성창       #}
             {% include 'commentapp/create.html' %}
 
         </div>

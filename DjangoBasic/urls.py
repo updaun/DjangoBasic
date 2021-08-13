@@ -29,5 +29,7 @@ urlpatterns = [
     path('articles/', include('articleapp.urls')),
     # 21.08.10 add comment path
     path('comments/', include('commentapp.urls')),
+    # 21.08.13 add project path
+    path('projects/', include('projectapp.urls')),
     # 21.07.28 image load
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

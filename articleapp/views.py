@@ -58,5 +58,5 @@ class ArticleListView(ListView):
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
     # 한 면에 몇 개의 게시글을 게시할 것인지 선언
-    paginate_by = 1
+    paginate_by = 10
 

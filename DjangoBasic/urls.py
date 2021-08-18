@@ -31,5 +31,7 @@ urlpatterns = [
     path('comments/', include('commentapp.urls')),
     # 21.08.13 add project path
     path('projects/', include('projectapp.urls')),
+    # 21.08.18 add subscribe path
+    path('subscribe/', include('subscribeapp.urls')),
     # 21.07.28 image load
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

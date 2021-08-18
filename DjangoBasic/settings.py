@@ -69,6 +69,8 @@ INSTALLED_APPS = [
     'commentapp',
     # 21.08.13 : add projectapp
     'projectapp',
+    # 21.08.18 : add subscribeapp
+    'subscribeapp',
 ]
 
 MIDDLEWARE = [

@@ -31,8 +31,10 @@ class VideoCamera(object):
     def get_frame(self):
         image = self.frame
         # image = HolisticModule.HolisticDetector().findHolistic(image, draw=True)
-        _, jpeg = cv2.imencode('.jpg', image)
-        return jpeg.tobytes()
+
+        # _, jpeg = cv2.imencode('.jpg', image)
+        # return jpeg.tobytes()
+        return image
 
     def update(self):
         while True:
@@ -40,40 +42,40 @@ class VideoCamera(object):
 
 
 def gen(camera):
-    # mp_drawing = mp.solutions.drawing_utils
-    # mp_holistic = mp.solutions.holistic
-    # mp_drawing.DrawingSpec(color=(0, 0, 255), thickness=2, circle_radius=2)
+    mp_drawing = mp.solutions.drawing_utils
+    mp_holistic = mp.solutions.holistic
+    mp_drawing.DrawingSpec(color=(200, 220, 30), thickness=2, circle_radius=1)
     while True:
-        frame = camera.get_frame()
-        # with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
-        #     image = camera.get_frame()
-        #
-        #     # Recolor Feed
-        #     # image = Image.open(image)
-        #     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        #     # Make Detections
-        #     results = holistic.process(image)
-        #     # print(results)
-        #     # Recolor image back to BGR for rendering
-        #     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        #
-        #     # Draw face Landmarks
-        #     # mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACE_CONNECTIONS)
-        #     # Right hand
-        #     mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
-        #     # Left hand
-        #     mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
-        #     # Pose Detections
-        #     mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
-        #
-        #     image = np.array(image, dtype='uint8')
-        #     # image = Image.fromarray(image)
-        #     # image = cv2.imencode('.jpg', image)
-        #     _, jpeg = cv2.imencode('.jpg', image)
-        #     # print(type(image))
-        #     print(type(jpeg))
+        # frame = camera.get_frame()
+        with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+
+            image = camera.get_frame()
+
+            # Recolor Feed
+            # image = Image.open(image)
+            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            # Make Detections
+            results = holistic.process(image)
+            # print(results)
+            # Recolor image back to BGR for rendering
+            image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+            # Draw face Landmarks
+            # mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_CONTOURS)
+            # Right hand
+            mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
+            # Left hand
+            mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS)
+            # Pose Detections
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS)
+
+            image = np.array(image, dtype='uint8')
+
+            _, image = cv2.imencode('.jpg', image)
+
+            image = image.tobytes()
         yield(b'--frame\r\n'
-              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+              b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n\r\n')
 
 @gzip.gzip_page
 def detectme(request):

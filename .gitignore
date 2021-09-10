@@ -86,7 +86,7 @@ media/
 staticfiles/
 
 Lib
-Scripts
 fonts
+Scripts
 updaun.pem
 Dockerfile

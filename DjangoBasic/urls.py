@@ -42,7 +42,7 @@ urlpatterns = [
     # 21.08.24 add like path
     path('likes/', include('likeapp.urls')),
     # 21.08.28 add detect path
-    path('detect/', include('detectapp.urls')),
+    # path('detect/', include('detectapp.urls')),
 
     # 21.07.28 image load
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

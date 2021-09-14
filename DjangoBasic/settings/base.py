@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # 21.08.24 : add likeapp
     'likeapp',
     # 21.08.28 : add detectapp
-    'detectapp',
+    # 'detectapp',
 ]
 
 from django.contrib.messages import constants as messages

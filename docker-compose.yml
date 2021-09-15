@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  django:
+    image: django image draft
+    ports:
+    - 8080:8000

@@ -13,15 +13,27 @@ services:
       - djangobasic_static:/data/static/
       - djangobasic_media:/data/media/
 
-
   django:
     image: djangobasic:v1.3.3
     networks:
       - DjangoBasic_network
     volumes:
-      - djangobasic_static:/data/static/
-      - djangobasic_media:/data/media/
+      - djangobasic_static:/home/DjangoBasic/staticfiles/
+      - djangobasic_media:/home/DjangoBasic/media/
+    secrets:
+      - DJANGO_SECRET_KEY
 
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - DjangoBasic_network
+    volumes:
+      - djangobasic_mariadb:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: password1234
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: password1234
 
 networks:
   DjangoBasic_network:
@@ -29,3 +41,8 @@ networks:
 volumes:
   djangobasic_static:
   djangobasic_media:
+  djangobasic_mariadb:
+
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true

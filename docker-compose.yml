@@ -5,7 +5,10 @@ services:
   nginx:
     image: nginx:1.19.5
     ports:
-      - 80:80
+      - mode: host
+        protocol: tcp
+        target: 80
+        published: 80
     networks:
       - DjangoBasic_network
     volumes:
@@ -13,6 +16,8 @@ services:
       - djangobasic_static:/data/static/
       - djangobasic_media:/data/media/
       - djangobasic_log:/var/log/nginx/
+    secrets:
+      - NGINX_AUTH
 
   goaccess:
     image: allinurl/goaccess:1.5.1
@@ -67,4 +72,6 @@ secrets:
   MARIADB_USER:
     external: true
   MARIADB_PASSWORD:
+    external: true
+  NGINX_AUTH:
     external: true
